@@ -30,16 +30,16 @@ public class avlTree{
 	
 	
 	public Node applyRotation(Node node) {
-		int balance = balanceOfTree(node);
+	int balance = balanceOfTree(node);
         if (balance > 1) {
             if (balanceOfTree(node.getLeftChild()) < 0) 
-                node.setLeftChild(rotateLeft(node.getLeftChild()));
-            return rotateRight(node);
+                node.setLeftChild(rotateLeft(node.getLeftChild()));	//left-right situation
+            return rotateRight(node);					//right-right situation
         }
         else if (balance < -1) {
             if (balanceOfTree(node.getRightChild()) > 0) 
-                node.setRightChild(rotateRight(node.getRightChild()));
-            return rotateLeft(node);
+                node.setRightChild(rotateRight(node.getRightChild()));	//right-left situation
+            return rotateLeft(node);					//left-left situation
         }
         return node;
 	}
@@ -103,7 +103,32 @@ public class avlTree{
 		System.out.println("");
 	}	
 			
-
+	public int balanceOfTree(Node node) {
+    	if (node != null)
+    		return height(node.getLeftChild()) - height(node.getRightChild());
+    	else
+    		return 0;
+    	}
+	
+	
+	public int height(Node N) {
+        if (N == null)
+            return 0;
+ 
+        return N.height;
+    	}
+	
+	
+	public void updateHeight(Node node) {    	
+            int maxHeight = Math.max(
+                    height(node.getLeftChild()),
+                    height(node.getRightChild())
+            );
+            node.setHeight(maxHeight + 1);
+	}
+	
+	
+	
 	public static void main(String[] args){
 		System.out.println("hello");
 		avlTree t = new avlTree(1);
