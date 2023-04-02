@@ -6,7 +6,45 @@ public class avlTree{
 	public avlTree(int val){
 		root = new Node(val);
 	}
+	
+	
+	public Node insertHelper(int data, Node root) {
+    	if (root == null) {
+            root = new Node(data);
+            return root;
+        }
 
+        if (data < root.key)
+            root.left = insertHelper(data, root.left);
+        else if (data > root.key)
+            root.right = insertHelper(data, root.right);
+        else
+        	return root;
+    	
+    	
+        updateHeight(root);
+        return applyRotation(root);
+    	}
+	
+    	void insert(int key) { root = insertHelper(key, root); }
+	
+	
+	public Node applyRotation(Node node) {
+		int balance = balanceOfTree(node);
+        if (balance > 1) {
+            if (balanceOfTree(node.getLeftChild()) < 0) 
+                node.setLeftChild(rotateLeft(node.getLeftChild()));
+            return rotateRight(node);
+        }
+        else if (balance < -1) {
+            if (balanceOfTree(node.getRightChild()) > 0) 
+                node.setRightChild(rotateRight(node.getRightChild()));
+            return rotateLeft(node);
+        }
+        return node;
+	}
+	
+	
 	public void rotateLeft(Node tree){
 		Node temp=null;
 		if(tree.left.left!=null){
