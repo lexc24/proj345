@@ -26,7 +26,36 @@ public class avlTree{
         return applyRotation(root);
     	}
 	
-    	void insert(int key) { root = insertHelper(key, root); }
+    	public void insert(int key) { root = insertHelper(key, root); }
+	
+	
+	
+	
+	public Node deleteHelper(Node root, int key) {
+    	 if (root == null)
+    	        return root;
+    	    if (key < root.key)
+    	        root.left = deleteHelper(root.left, key);
+    	    else if (key > root.key)
+    	        root.right = deleteHelper(root.right, key);
+    	    else {
+    	        if (root.left == null)
+    	            return root.right;
+    	        else if (root.right == null)
+    	            return root.left;
+    	        // node with two children: Get the inorder
+    	        // successor (smallest in the right subtree)
+    	        root.key = minValue(root.right);
+    	        // Delete the inorder successor
+    	        root.right = deleteHelper(root.right, root.key);
+    	    }
+    	    updateHeight(root);
+            return applyRotation(root);
+    	}
+    
+    	void deleteKey(int key) { root = deleteHelper(root, key); }
+	
+	
 	
 	
 	public Node applyRotation(Node node) {
@@ -126,6 +155,15 @@ public class avlTree{
             );
             node.setHeight(maxHeight + 1);
 	}
+	
+	public int minValue(Node root){
+	     int minv = root.key;
+             while (root.left != null) {
+            	    minv = root.left.key;
+            	    root = root.left;
+             }
+        return minv;
+    	} 
 	
 	
 	
