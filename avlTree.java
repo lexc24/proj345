@@ -46,37 +46,20 @@ public class avlTree{
 		// if key is found
     	else {
     	    if (root.left == null || root.right==null){
-				//Node temp =null;
+				
 				if(root.left==null){
 					root=root.right;
 				}
 				else if(root.right==null){
 					root=root.left;
 				}
-				/* 
-				if(root.right==null && root.left==null){
-					temp=root;
-					root=null;
-				}
-				else{
-					root=temp;
-				}*/
 			}
 			else{
+				
 				Node temp = leftMostNode(root.right);
 				root.setKey(temp.getKey());
 				root.right=deleteHelper(root.right, root.key);
 			}
-			
-			/* 
-    	        return root.right;
-    	    else if (root.right == null)
-    	        return root.left;*/
-    	    // node with two children: Get the inorder
-    	    // successor (smallest in the right subtree)
-    	    //root.key = minValue(root.right);
-    	    // Delete the inorder successor
-    	    //root.right = deleteHelper(root.right, root.key);
     	}
 		if(root==null){
 			return root;
@@ -87,15 +70,11 @@ public class avlTree{
     
     void deleteKey(int key) { root = deleteHelper(root, key); }
 	
-	
-	
-	
 	public Node applyRotation(Node node) {
 	int balance = balanceOfTree(node);
 		// if left heavy
         if (balance > 1) {
             if (balanceOfTree(node.getLeftChild()) < 0){
-               // node.setLeftChild(rotateLeft(node.getLeftChild()));
 			   	//left-right situation
 				node = rotateLeft(node);
 			}
@@ -103,18 +82,15 @@ public class avlTree{
 				node.right=rotateRight(node.right);
 				node=rotateLeft(node);
 			}
-            //return rotateRight(node);					//right-right situation
         }
 		// if right heavy
         else if (balance < -1) {
             if (balanceOfTree(node.getRightChild()) > 0) 
-                //node.setRightChild(rotateRight(node.getRightChild()));	//right-left situation
 				node=rotateRight(node);
 			else{
 				node.left=rotateLeft(node.left);
 				node=rotateRight(node);
 			}
-			//return rotateLeft(node);					//left-left situation
 
         }
         return node;
@@ -131,23 +107,7 @@ public class avlTree{
 	}
 
 	public Node rotateLeft(Node tree){
-		/* 
-		Node temp=null;
-		if(tree.left.left!=null){
-			temp = tree.left;
-			tree.left=tree.left.left;
-			temp.left=null;
-		}
-		if(tree.parent==null){
-			tree.parent=temp;
-		}
-		else if(tree==tree.parent.left){
-			tree.parent.left=temp;
-		}
-		else{
-			tree.parent.right=temp;
-		}
-		temp.left=tree;*/
+		
 		Node x = tree.right;
 		Node z = x.left;
 		x.left=tree;
@@ -191,7 +151,7 @@ public class avlTree{
 
 			printTreeHelper(root.left,spaceCount);
 		}
-			
+
 		System.out.println("");
 		for(int i=0;i<spaceCount;i++){
 			System.out.print("    ");
@@ -257,8 +217,8 @@ public class avlTree{
 	public static void main(String[] args){
 		System.out.println("hello");
 		avlTree t = new avlTree(1);
-		Node n =new Node(2);
-		Node n2 = new Node(0);
+		//Node n =new Node(2);
+		//Node n2 = new Node(0);
 		t.insert(0);
 		t.insert(2);
 		t.deleteKey(0);

@@ -12,14 +12,13 @@ public class Node{
 		right=null;
 		parent=null;
 	}
-	public int getKey() {
-			return key;
+
+	public int getKey(){
+		return key;
 	}
-
-	public void setKey(int key) {
-		this.key= key;
-}
-
+	public void setKey(int key){
+		this.key=key;
+	}
 	public Node getLeftChild() {
 		return this.left;
 		}
