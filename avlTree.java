@@ -4,61 +4,65 @@ public class avlTree{
 	public avlTree(int key){
 		root = new Node(key);
 	}
-	
-	
+
+
 	public Node insertHelper(int data, Node root) {
-		// if empty tree is reaches place root there
+		// if empty tree is reached place root there
     	if (root == null) {
             root = new Node(data);
             return root;
         }
 		// explore left side if data is less than root
-        if (data < root.key)
+        else if (data < root.key)
             root.left = insertHelper(data, root.left);
 		// explore right side if data is greater than root
         else if (data > root.key)
             root.right = insertHelper(data, root.right);
-		// duplicate is found and returns null to maintain balance
-        else
-        	return null;
-    	
-    	
+		
         updateHeight(root);
 		// rotate tree to maintain balance if needed
         return applyRotation(root);
+
     }
 	
     public void insert(int key) { 
-		root = insertHelper(key, root); 
+		Node res =insertHelper(key, root); 
+		if(res!=null){
+			root=res;
+		}
+
 	}
 	
-
 	public Node deleteHelper(Node root, int key) {
 		// if reached empty tree
-    	 if (root == null)
+    	if (root == null){
     	        return root;
+		}
+		System.out.println(root.getKey());
 		// explore left side if key is less than root
     	if (key < root.key)
     	    root.left = deleteHelper(root.left, key);
 		// explore right side if key is greater than root
     	else if (key > root.key)
     	    root.right = deleteHelper(root.right, key);
-		// if key is found
+		// if key is found 
     	else {
     	    if (root.left == null || root.right==null){
-				
+				// if left is null swap with right side 
 				if(root.left==null){
 					root=root.right;
 				}
+				// if right is null swap with left side
 				else if(root.right==null){
 					root=root.left;
 				}
 			}
+			// if root has two children it finds largest 
+			// child on the right side and places it at roots spot
 			else{
-				
-				Node temp = leftMostNode(root.right);
+				Node temp = leftMostNode(root.left);
 				root.setKey(temp.getKey());
-				root.right=deleteHelper(root.right, root.key);
+				root.left=deleteHelper(root.left, root.key);
 			}
     	}
 		if(root==null){
@@ -66,44 +70,67 @@ public class avlTree{
 		}
     	updateHeight(root);
         return applyRotation(root);
-    	}
+    }
     
-    void deleteKey(int key) { root = deleteHelper(root, key); }
+    void deleteKey(int key) { 
+		root = deleteHelper(root, key); 
+	}
+
+	public static int getBalanceOfTree(Node node){
+		if(node==null){
+			return 0;
+		}
+		else{
+			return height(node.getRightChild())-height(node.getLeftChild());
+		}
+	}
 	
 	public Node applyRotation(Node node) {
-	int balance = balanceOfTree(node);
-		// if left heavy
+		// gets balance value of cur node
+		int balance = getBalanceOfTree(node);
+		// if right heavy
         if (balance > 1) {
-            if (balanceOfTree(node.getLeftChild()) < 0){
-			   	//left-right situation
+			// if right side is right heavy
+            if (getBalanceOfTree(node.getRightChild()) >=0){
+				// rotates children to left side
 				node = rotateLeft(node);
 			}
+			// if right side is left heavy
 			else{
+				// rotates right gran-children to right so its right heavy
 				node.right=rotateRight(node.right);
+				// rotates children to left side
 				node=rotateLeft(node);
 			}
         }
-		// if right heavy
+		// if left heavy
         else if (balance < -1) {
-            if (balanceOfTree(node.getRightChild()) > 0) 
+			// if left side is left heavy
+            if (getBalanceOfTree(node.getLeftChild()) >=0){
+				// rotates children to right side
 				node=rotateRight(node);
+			}
+			// if left side is right heavy	
 			else{
+				// rotates left gran-children to left so its left heavy
 				node.left=rotateLeft(node.left);
+				// rotates children to right side
 				node=rotateRight(node);
 			}
 
         }
+		// if balanced
         return node;
 	}
 	
-	public Node rotateRight(Node tree){
-		Node x = tree.left;
-		Node y = x.right;
-		x.right=y;
-		y.left=tree;
-		updateHeight(tree);
-		updateHeight(x);
-		return x;
+	public Node rotateRight(Node root){
+		Node leftChild = root.left;
+		Node rightGranChild = leftChild.right;
+		leftChild.right=root;
+		root.left=rightGranChild;
+		updateHeight(root);
+		updateHeight(leftChild);
+		return leftChild;
 	}
 
 	public Node rotateLeft(Node tree){
@@ -147,7 +174,7 @@ public class avlTree{
 		}	
 		// prints left tree
 		System.out.print("-left-> ");
-		if(root.right!=null){
+		if(root.left!=null){
 
 			printTreeHelper(root.left,spaceCount);
 		}
@@ -169,23 +196,16 @@ public class avlTree{
 		printTreeHelper(root,0);
 		System.out.println("");
 	}	
-			
-	public int balanceOfTree(Node node) {
-    	if (node != null)
-    		return height(node.getLeftChild()) - height(node.getRightChild());
-    	else
-    		return 0;
-    	}
-	
-	
-	public int height(Node N) {
+		
+
+	public static int height(Node N) {
         if (N == null)
             return 0;
  
         return N.height;
     	}
 	
-	public Node leftMostNode(Node root){
+	public static Node leftMostNode(Node root){
 		if(root==null){
 			return root;
 		}
@@ -195,17 +215,15 @@ public class avlTree{
 		return leftMostNode(root.left);
 	}
 
-	public void updateHeight(Node node) {    	
-            int maxHeight = Math.max(
-                    height(node.getLeftChild()),
-                    height(node.getRightChild())
-            );
+	public static void updateHeight(Node node) {    	
+            int maxHeight = Math.max(height(node.getLeftChild()),
+			height(node.getRightChild()));
             node.setHeight(maxHeight + 1);
 	}
 	
-	public int minValue(Node root){
-	     int minv = root.key;
-             while (root.left != null) {
+	public static int minValue(Node root){
+	    int minv = root.key;
+            while (root.left != null) {
             	    minv = root.left.key;
             	    root = root.left;
              }
