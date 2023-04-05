@@ -1,16 +1,15 @@
 public class Node{
-	public int height;
-	public int key;
-	public Node left;
-	public Node right;
-	public Node parent;
+	private int height;
+	private int key;
+	private Node left;
+	private Node right;
 	
 	public Node(int key){
 		this.key=key;
 		height=1;
 		left=null;
 		right=null;
-		parent=null;
+
 	}
 
 	public int getKey(){
@@ -29,10 +28,16 @@ public class Node{
 
 	public void setHeight(int i) {
 		this.height = i;
-		}
+	}
+
+	public int getHeight() {
+		return this.height;
+	}
 	public void setLeftChild(Node left){
 			this.left=left;
 	}
+
+	
 	public void setRightChild(Node right){
 		this.right=right;
 	}	
