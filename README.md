@@ -1,4 +1,4 @@
-# proj345-AVL Tree
+# AVL Tree
 # Group Members: 
 Lex Castaneda, Paolo Rances, Colin Johnson
 # Our Project
