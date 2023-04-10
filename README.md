@@ -10,5 +10,5 @@ The node class has the standard left and right child, and key value withint it, 
 # Testing for this Program
 To Run this program, either use the given test cases provided in the avlTreeTest.java file or by calling the varius public functions to implement a avlTree object. 
 # Project Presentation
-[AVLTree]([https://choosealicense.com/licenses/mit/](https://docs.google.com/presentation/d/1XR59ATMpIEqKdFO7RSohuFq-cdtqWwyj/edit?usp=sharing&ouid=100532028885950988787&rtpof=true&sd=true))
+[AVLTree](https://docs.google.com/presentation/d/1XR59ATMpIEqKdFO7RSohuFq-cdtqWwyj/edit?usp=sharing&ouid=100532028885950988787&rtpof=true&sd=true)
 
