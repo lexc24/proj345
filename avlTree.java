@@ -229,12 +229,12 @@ public class avlTree{
  	* @param int Key - key vlaue to find
  	* @return Node = node with key value = key or null if not found
  	*/
-	public Node find(Node cur, int key){
+	public boolean find(Node cur, int key){
 		if (cur==null)
-			return 0;
+			return false;
 		// correct node found
 		if(cur.getKey()==key) 
-			return cur.getKey();
+			return true;
 		// if cur is less than key explore right side
 		if(cur.getKey()>key) 
 			return find(cur.getLeftChild(),key);
