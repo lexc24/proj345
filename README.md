@@ -12,11 +12,11 @@ This will download the zip file of our Node, AVL, and testing files. Once you ha
 
 If you want to use the AVL tree for your own purposes, important things to keep in mind for our methods are...
 
-*' find(Node cur, int key)'
+* find(Node cur, int key)
   *This serach method takes two inputs, the root of the tree and the value you are searching for. This method returns true if it is found and if it doesn't exist then it     returns false
-*' insert(int i)'
+* insert(int i)
   *This insert method takes the int value you want to insert into the AVL, it returns nothing.
-* ' deleteKey(int key)'
+* deleteKey(int key)
   * This delete method take the int value you want to delete into the AVL, it returns nothing.
 # Project Presentation
 Click here [AVLTree](https://docs.google.com/presentation/d/1XR59ATMpIEqKdFO7RSohuFq-cdtqWwyj/edit?usp=sharing&ouid=100532028885950988787&rtpof=true&sd=true) to access our presentation which goes in-depth into how the AVL tree works and our implementation
