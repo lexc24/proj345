@@ -11,6 +11,7 @@ If you click here>>>[avlTree.zip](https://github.com/lexc24/proj345/files/112030
 This will download the zip file of our Node, AVL, and testing files. Once you have them in the same directory, you can launch the testing file in your IDE and it will run our tests which checked the main three methods of the BST, search, insert, and deletion. 
 
 If you want to use the AVL tree for your own purposes, important things to keep in mind for our methods are...
+
 *' find(Node cur, int key)'
   *This serach method takes two inputs, the root of the tree and the value you are searching for. This method returns true if it is found and if it doesn't exist then it     returns false
 *' insert(int i)'
