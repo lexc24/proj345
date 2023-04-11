@@ -4,6 +4,9 @@ public class avlTree{
 	public avlTree(int key){
 		root = new Node(key);
 	}
+	public avlTree(){
+		root = null;
+	}
 
 	public Node getRoot(){
 		return root;
