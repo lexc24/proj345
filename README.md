@@ -17,11 +17,6 @@ If you want to use the AVL tree for your own purposes, important things to keep 
   *This insert method takes the int value you want to insert into the AVL, it returns nothing.
 * ' deleteKey(int key)'
   * This delete method take the int value you want to delete into the AVL, it returns nothing.
-
-
-
 # Project Presentation
 Click here [AVLTree](https://docs.google.com/presentation/d/1XR59ATMpIEqKdFO7RSohuFq-cdtqWwyj/edit?usp=sharing&ouid=100532028885950988787&rtpof=true&sd=true) to access our presentation which goes in-depth into how the AVL tree works and our implementation
-
-
 
