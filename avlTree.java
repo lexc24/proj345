@@ -1,3 +1,12 @@
+/*
+ * avlTree.java
+ * Lex Castaneda, Paolo Rances, Colin Johnson
+ * This java program holds the implementation of the AVL data structure. 
+ * It is a self-balancing binary search tree, which maintains balance by a balance factor calculated by
+ * nodes' height. This program contains the typical methods of a BST such as find(search), insert, and delete.
+ * Along with methods to aid in the rotations required to maintain BST balance.
+ */
+
 public class avlTree{
 	private Node root;
 
