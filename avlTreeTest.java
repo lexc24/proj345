@@ -4,10 +4,27 @@ public class avlTreeTest {
         avlTree tree = new avlTree(1);
         System.out.println(testInset(tree));
         tree.printTree();
+        System.out.println(testSearch(tree));
         System.out.println(testDel(tree));
         tree.printTree();
         
     }
+    public static boolean testSearch(avlTree tree){
+		 boolean t_or_f = true;
+	        for(int i=2;i<=25;i++){
+	            int num = tree.find(tree.getRoot(),i);
+	            if(num!= i) {
+	            	t_or_f = false;
+	            }
+	        }
+	        for(int i=26;i<=30;i++){
+	            int num = tree.find(tree.getRoot(),i);
+	            if(num!= 0) {
+	            	t_or_f = false;
+	            }
+	        }
+	        return t_or_f;
+	    }
 
     public static boolean testInset(avlTree tree){
         for(int i=2;i<=25;i++){
@@ -18,16 +35,12 @@ public class avlTreeTest {
         }return false;
     }
 
-    public static boolean testDel(avlTree tree){
-        try{
-            for(int i=2;i<=25;i++){
+   public static boolean testDel(avlTree tree){
+	    	for(int i=1;i<=25;i++){
                 tree.deleteKey(i);
             }
-            //tree.printTree();
-        }
-        catch(Exception e){
-            return false;
-        }   
-        return true;
-    }
+	    	if(tree.isEmpty()== true)
+	    		return true;
+	    	return false;
+	    }
 }
