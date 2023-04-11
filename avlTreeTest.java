@@ -1,7 +1,6 @@
 public class avlTreeTest {
 
     public static void main(String[] args) {
-        System.out.println("hello");
         avlTree tree = new avlTree(1);
         System.out.println(testInset(tree));
         tree.printTree();
