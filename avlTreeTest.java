@@ -10,16 +10,16 @@ public class avlTreeTest {
         
     }
     public static boolean testSearch(avlTree tree){
-		 boolean t_or_f = true;
+		boolean t_or_f = true;
 	        for(int i=2;i<=25;i++){
-	            int num = tree.find(tree.getRoot(),i);
-	            if(num!= i) {
+	            boolean num = tree.find(tree.getRoot(),i);
+	            if(num!= true) {
 	            	t_or_f = false;
 	            }
 	        }
 	        for(int i=26;i<=30;i++){
-	            int num = tree.find(tree.getRoot(),i);
-	            if(num!= 0) {
+	            boolean num = tree.find(tree.getRoot(),i);
+	            if(num!= false) {
 	            	t_or_f = false;
 	            }
 	        }
