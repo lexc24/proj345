@@ -220,17 +220,18 @@ public class avlTree{
  	* @param int Key - key vlaue to find
  	* @return Node = node with key value = key or null if not found
  	*/
-	public Node find(int key){
-		Node cur = root;
-		while(cur!=null){
-			// correct node found
-			if(cur.getKey()==key) return cur;
-			// if cur is less than key explaore right side
-			if(cur.getKey()<key) cur=cur.getRightChild();
-			// if cur is greater than key explaore right side
-			else cur=cur.getLeftChild();
-		}
-		return null;
+	public Node find(Node root, int key){
+		if (cur==null)
+			return 0;
+		// correct node found
+		if(cur.getKey()==key) 
+			return cur.getKey();
+		// if cur is less than key explore right side
+		if(cur.getKey()>key) 
+			return find(cur.getLeftChild(),key);
+		// if cur is greater than key explore right side
+		else 
+			return find(cur.getRightChild(),key);
 	}
 
 	/**
@@ -310,18 +311,15 @@ public class avlTree{
             	    root = root.getLeftChild();
              }
         return minv;
-    } 
+    	}
 	
-	
-	
-	public static void main(String[] args){
-		System.out.println("hello");
-		avlTree t = new avlTree(1);
-		//Node n =new Node(2);
-		//Node n2 = new Node(0);
-		t.insert(0);
-		t.insert(2);
-		t.deleteKey(0);
-		t.printTree();
+	public boolean isEmpty() {
+		if (root == null) {
+			return true;
+		}
+		return false;
 	}
+
+	
+	
 }
